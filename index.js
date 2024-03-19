@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             p_tag.classList.toggle("cross-through-active")
             let checkbox = p_tag.previousElementSibling;
             checkbox.classList.toggle("check-item-active")
-            console.log(checkbox);
+            // console.log(checkbox);
         })
     })
     
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             listNextSilbling.classList.toggle("check-item-active")
             let lineThrough = listNextSilbling.nextElementSibling;
             lineThrough.classList.toggle('cross-through-active');
-            console.log(listNextSilbling.nextElementSibling);
+            // console.log(listNextSilbling.nextElementSibling);
         })
     
     })
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightDark_mode.addEventListener("click", () => {
         const body = document.body;
         const todoBody = document.querySelector('.todo-body');
-        
+
         // conditional statement of url("/images/bg-desktop-light.jpg") and url("/images/bg-mobile-light.jpg")
         if (wrapperImg.style.backgroundImage.includes('url("/images/bg-desktop-light.jpg")') || wrapperImg.style.backgroundImage.includes('url("/images/bg-mobile-light.jpg")')) {
             wrapperImg.style.backgroundImage = "url('/images/bg-desktop-dark.jpg')";
@@ -79,13 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
     
-    // inputValue.addEventListener("keypress", (e) => {
-    //     e.preventDefault();
-    //     if (e.keyCode === 13) {
-    //         console.log(inputValue.value);
-    //     }
-    //     // console.log(e.keyCode);
-    // })
+    inputValue.addEventListener("keyup", (e) => {
+        console.log(e.key);
+        if (e.key === 'Enter') {
+            const contentItem = document.getElementById("content");
+            console.log(contentItem);
+            let createItem = document.createElement('div');
+            createItem.classList.add("task-item")
+            createItem.innerText = inputValue.value;
+            contentItem.appendChild(createItem)
+        }
+        // console.log(e.keyCode);
+    })
     
     // Delete parent element
     closeTasks.forEach(task => {
@@ -96,7 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
 
-
-
+    const trackAllList = document.querySelector(".track2");
+    const trackActiveList = document.querySelector(".track3");
+    const trackCompletedList = document.querySelector(".track4");
+    trackActiveList.addEventListener("click", () => {
+        console.log(crossThrough.includes('.cross-through-active'));
+    })
+    console.log(trackAllList);
+    console.log(trackActiveList);
+    console.log(trackCompletedList);
 })
+
 
