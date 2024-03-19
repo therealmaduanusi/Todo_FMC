@@ -1,0 +1,174 @@
+@import 'color';
+@import 'font';
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  background-color: $VeryLightGray;
+
+}
+#wrapper{
+  background-repeat: no-repeat;
+}
+.container{
+  max-width: 450px;
+  margin: 0 auto;
+  position: relative;
+  top: 7rem;
+
+}
+
+button{
+  font-family: "Josefin Sans", sans-serif;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-header{
+  color: $VeryLightGray;
+  margin-bottom: 20px;
+  .todo-logo{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    h1{
+      letter-spacing: 1rem;
+    }
+    .todo-mode{
+      img{
+        cursor: pointer;
+      }
+    }
+  }
+  .todo-input{
+    width: 100%;
+    input{
+      width: 100%;
+      padding: 20px 0 20px 30px;
+      border-radius: 2px;
+      border: none;
+      outline-style: none;
+      font-family: "Josefin Sans", sans-serif;
+    }
+  }
+}
+
+.todo-body{
+  background-color: $LightGrayishBlue2;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px $DarkGrayishBlue2;
+  .todo-statement{
+    display: flex;
+    // column-gap: 1rem;
+    padding: 30px;
+    color: $DarkGrayishBlue1;
+    font-size: 0.8rem;
+    .track1{
+      flex-grow: 3;
+    }
+    .track2{
+      color: $BrightBlue;
+    }
+    .wrapper-state{
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      column-gap: 7px;
+    }
+    .track5{
+      flex-grow: 2;
+      display: flex;
+      justify-content: end;
+    }
+    .track2,
+    .track3,
+    .track4,
+    .track5{
+      cursor: pointer;
+    }
+  }
+
+
+
+
+  #content{
+    .task-item{
+      padding: 30px;
+      border-bottom: 1px solid $DarkGrayishBlue2;
+      display: flex;
+      justify-content: space-between;
+      .check-list{
+        width: 20px;
+        height: 20px;
+        border: 1px solid $DarkGrayishBlue2;
+        border-radius: 50%;
+        // position: relative;
+        // img{
+        //   position: absolute;
+        //   top: 5px;
+        //   left: 4px;
+        // }
+      }
+      .check-list,
+      p,
+      #closeimg{
+        cursor: pointer;
+      }
+      .check-item-active{
+        background:url("/images/icon-check.svg"), linear-gradient($BG_color);
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .cross-through-active{
+        text-decoration: line-through;
+        color: $DarkGrayishBlue2;
+      }
+    }
+    .task-item > img {
+      opacity: 0;
+      transition: 0.3s ease-in-out;
+    }
+    .task-item:hover img{
+      opacity: 1;
+      display: block;
+    }
+  }
+}
+
+
+
+@media (max-width: 380px) {
+  #wrapper{
+    background-image: url("/images/bg-mobile-light.jpg");
+  }
+  .container{
+    top: 4rem;
+    max-width: 330px;
+    position: relative;
+  }
+
+  .wrapper-state{
+    position: absolute;
+    width: 330px;
+    background-color: $LightGrayishBlue2;
+    bottom: -60px;
+    right: 0;
+    padding: 15px;
+    box-shadow: 1px 1px 3px $DarkGrayishBlue2;
+    justify-content: space-around;
+  }
+
+}
+.drag-text{
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 20px;
+  color: $DarkGrayishBlue1;
+}

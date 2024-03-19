@@ -1,0 +1,156 @@
+/* Neutal color */
+/* Typography */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  background-color: hsl(0, 0%, 98%);
+}
+
+#wrapper {
+  background-repeat: no-repeat;
+}
+
+.container {
+  max-width: 450px;
+  margin: 0 auto;
+  position: relative;
+  top: 7rem;
+}
+
+button {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-header {
+  color: hsl(0, 0%, 98%);
+  margin-bottom: 20px;
+}
+.todo-header .todo-logo {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.todo-header .todo-logo h1 {
+  letter-spacing: 1rem;
+}
+.todo-header .todo-logo .todo-mode img {
+  cursor: pointer;
+}
+.todo-header .todo-input {
+  width: 100%;
+}
+.todo-header .todo-input input {
+  width: 100%;
+  padding: 20px 0 20px 30px;
+  border-radius: 2px;
+  border: none;
+  outline-style: none;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.todo-body {
+  background-color: hsl(236, 33%, 100%);
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px hsl(234, 11%, 52%);
+}
+.todo-body .todo-statement {
+  display: flex;
+  padding: 30px;
+  color: hsl(236, 9%, 61%);
+  font-size: 0.8rem;
+}
+.todo-body .todo-statement .track1 {
+  flex-grow: 3;
+}
+.todo-body .todo-statement .track2 {
+  color: hsl(220, 98%, 61%);
+}
+.todo-body .todo-statement .wrapper-state {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+}
+.todo-body .todo-statement .track5 {
+  flex-grow: 2;
+  display: flex;
+  justify-content: end;
+}
+.todo-body .todo-statement .track2,
+.todo-body .todo-statement .track3,
+.todo-body .todo-statement .track4,
+.todo-body .todo-statement .track5 {
+  cursor: pointer;
+}
+.todo-body #content .task-item {
+  padding: 30px;
+  border-bottom: 1px solid hsl(234, 11%, 52%);
+  display: flex;
+  justify-content: space-between;
+}
+.todo-body #content .task-item .check-list {
+  width: 20px;
+  height: 20px;
+  border: 1px solid hsl(234, 11%, 52%);
+  border-radius: 50%;
+}
+.todo-body #content .task-item .check-list,
+.todo-body #content .task-item p,
+.todo-body #content .task-item #closeimg {
+  cursor: pointer;
+}
+.todo-body #content .task-item .check-item-active {
+  background: url("/images/icon-check.svg"), linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.todo-body #content .task-item .cross-through-active {
+  text-decoration: line-through;
+  color: hsl(234, 11%, 52%);
+}
+.todo-body #content .task-item > img {
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+.todo-body #content .task-item:hover img {
+  opacity: 1;
+  display: block;
+}
+
+@media (max-width: 380px) {
+  #wrapper {
+    background-image: url("/images/bg-mobile-light.jpg");
+  }
+  .container {
+    top: 4rem;
+    max-width: 330px;
+    position: relative;
+  }
+  .wrapper-state {
+    position: absolute;
+    width: 330px;
+    background-color: hsl(236, 33%, 100%);
+    bottom: -60px;
+    right: 0;
+    padding: 15px;
+    box-shadow: 1px 1px 3px hsl(234, 11%, 52%);
+    justify-content: space-around;
+  }
+}
+.drag-text {
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 20px;
+  color: hsl(236, 9%, 61%);
+}/*# sourceMappingURL=style.css.map */

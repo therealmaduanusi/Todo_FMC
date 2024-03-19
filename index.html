@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="/style/style.css">
+  <title>Frontend Mentor | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <div id="wrapper" style="background-image: url('/images/bg-desktop-light.jpg');">
+    <div class="container">
+      <div class="todo-header">
+        <div class="todo-logo">
+          <h1>TODO</h1>
+          <div class="todo-mode">
+            <img id="lightDark_mode" src="./images/icon-moon.svg" alt="mode">
+          </div>
+        </div>
+        <form class="todo-input">
+          <input type="text" placeholder="Create a new todo" id="inputValue">
+        </form>
+      </div>
+      <!-- Body -->
+      <div class="todo-body">
+        <!-- Contents -->
+        <div id="content">
+          <div class="task-item">
+            <div class="check-list check-item-active">
+              <!-- Added bg-img and bg-color -->
+            </div>
+            <p class="cross-through cross-through-active">Complete the todo app1</p>
+            <!-- <div class="close"> -->
+              <img src="/images/icon-cross.svg" alt="close" id="closeimg" class="closeTask">
+            <!-- </div> -->
+          </div>
+          <div class="task-item">
+            <div class="check-list">
+              <!-- Added bg-img and bg-color -->
+            </div>
+            <p class="cross-through">Complete the todo app2</p>
+            <!-- <div class="close"> -->
+              <img src="/images/icon-cross.svg" alt="close" id="closeimg"  class="closeTask">
+            <!-- </div> -->
+          </div>
+          <div class="task-item">
+            <div class="check-list">
+              <!-- Added bg-img and bg-color -->
+            </div>
+            <p class="cross-through">Complete the todo app3</p>
+            <!-- <div class="close"> -->
+              <img src="/images/icon-cross.svg" alt="close" id="closeimg"  class="closeTask">
+            <!-- </div> -->
+          </div>
+          <div class="task-item">
+            <div class="check-list">
+              <!-- Added bg-img and bg-color -->
+            </div>
+            <p class="cross-through">Complete the todo app4</p>
+            <!-- <div class="close"> -->
+              <img src="/images/icon-cross.svg" alt="close" id="closeimg" class="closeTask">
+            <!-- </div> -->
+          </div>
+        </div>
+  
+        <div class="todo-statement">
+          <p class="track track1">items left</p>
+          <div class="wrapper-state">
+            <p class="track track2">All</p>
+            <p class="track track3">Active</p>
+            <p class="track track4">Completed</p>
+          </div>
+          <p class="track track5">Clear Completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="drag-text">Drag and drop to reorder list</p>
+
+  <!-- Todo -->
+
+  <!-- Add dynamic number items left -->
+
+  <!-- All
+  Active 
+  Completed
+
+  Clear Completed
+
+  Drag and drop to reorder list -->
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
