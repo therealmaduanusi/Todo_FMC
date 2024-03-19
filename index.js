@@ -8,8 +8,58 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeTasks = document.querySelectorAll(".closeTask");
     const checkList = document.querySelectorAll(".check-list");
     const crossThrough = document.querySelectorAll(".cross-through");
-    
-    // Checking/get the element(p)
+
+    // Data input
+    inputValue.addEventListener("keyup", (e) => {
+        // console.log(e.key);
+        if (e.key === 'Enter') {
+            const contentItem = document.getElementById("content");
+            // console.log(contentItem);
+            let createItem = document.createElement('div');
+            createItem.classList.add("task-item")
+            createItem.innerHTML = `
+                <div class="check-list">
+                <!-- Added bg-img and bg-color -->
+                </div>
+                <p class="cross-through ">${inputValue.value}</p>
+                <!-- <div class="close"> -->
+                <img src="/images/icon-cross.svg" alt="close" id="closeimg" class="closeTask">
+            `;
+            contentItem.appendChild(createItem)
+
+            // updating cross-through(p) functionality
+            const newP = createItem.querySelector('p.cross-through');
+            newP.addEventListener("click", () => {
+                newP.classList.toggle("cross-through-active");
+                let checkbox = newP.previousElementSibling;
+                checkbox.classList.toggle("check-item-active");
+                // console.log(checkbox);
+            });
+
+            // updating checklist(div) functionality
+            const newDiv = createItem.querySelector('div.check-list');
+            newDiv.addEventListener("click", () => {
+                newDiv.classList.toggle("check-item-active");
+                let lineThrough = newDiv.nextElementSibling;
+                lineThrough.classList.toggle('cross-through-active');
+            });
+
+            // updating close functionality
+            const newClose = document.querySelectorAll("img.closeTask")
+            newClose.forEach(task => {
+                task.addEventListener('click', () => {
+                    let removeParentElement = task.parentElement;
+                    removeParentElement.remove()
+                    
+                })
+            })
+
+            inputValue.value = '';
+        }
+        // console.log(e.keyCode);
+    })
+
+    // Checking/get the elements(p)
     crossThrough.forEach(p_tag => {
         // active state when click
         p_tag.addEventListener("click", () => {
@@ -41,7 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth <= 380) {
         wrapperImg.style.backgroundImage = "url('/images/bg-mobile-light.jpg')";
     }
-    
+
+
+
     // changing mode(light and dark)
     lightDark_mode.addEventListener("click", () => {
         const body = document.body;
@@ -79,19 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
     
-    inputValue.addEventListener("keyup", (e) => {
-        console.log(e.key);
-        if (e.key === 'Enter') {
-            const contentItem = document.getElementById("content");
-            console.log(contentItem);
-            let createItem = document.createElement('div');
-            createItem.classList.add("task-item")
-            createItem.innerText = inputValue.value;
-            contentItem.appendChild(createItem)
-            inputValue.value = '';
-        }
-        // console.log(e.keyCode);
-    })
+
     
     // Delete parent element
     closeTasks.forEach(task => {
