@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             createItem.classList.add("task-item")
             createItem.innerText = inputValue.value;
             contentItem.appendChild(createItem)
+            inputValue.value = '';
         }
         // console.log(e.keyCode);
     })
