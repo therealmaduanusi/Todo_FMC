@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // console.log(window.innerWidth);
-
+    let itemNum = 0;
     const inputValue = document.getElementById("inputValue");
 
 
@@ -8,6 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeTasks = document.querySelectorAll(".closeTask");
     const checkList = document.querySelectorAll(".check-list");
     const crossThrough = document.querySelectorAll(".cross-through");
+
+
+    function updateItemCount() {
+        const taskItems = document.querySelectorAll(".task-item");
+        itemNum = taskItems.length;
+        const trackItem = document.querySelector(".item-num");
+        trackItem.textContent = itemNum;
+    }
+
 
     // Data input
     inputValue.addEventListener("keyup", (e) => {
@@ -25,39 +34,51 @@ document.addEventListener("DOMContentLoaded", () => {
                 <!-- <div class="close"> -->
                 <img src="/images/icon-cross.svg" alt="close" id="closeimg" class="closeTask">
             `;
+            
+
             contentItem.appendChild(createItem)
-
+            incrememtItem()
+            updateItemListeners();
+            inputValue.value = '';
+            updateItemCount();
+            // console.log(itemNum);
             // updating cross-through(p) functionality
-            const newP = createItem.querySelector('p.cross-through');
-            newP.addEventListener("click", () => {
-                newP.classList.toggle("cross-through-active");
-                let checkbox = newP.previousElementSibling;
-                checkbox.classList.toggle("check-item-active");
-                // console.log(checkbox);
-            });
-
-            // updating checklist(div) functionality
-            const newDiv = createItem.querySelector('div.check-list');
-            newDiv.addEventListener("click", () => {
-                newDiv.classList.toggle("check-item-active");
-                let lineThrough = newDiv.nextElementSibling;
-                lineThrough.classList.toggle('cross-through-active');
-            });
-
-            // updating close functionality
-            const newClose = document.querySelectorAll("img.closeTask")
-            newClose.forEach(task => {
-                task.addEventListener('click', () => {
-                    let removeParentElement = task.parentElement;
-                    removeParentElement.remove()
-                    
-                })
-            })
-
             inputValue.value = '';
         }
         // console.log(e.keyCode);
     })
+
+    // Item Update
+    function updateItemListeners() {
+        const newTaskItem = document.querySelector(".task-item:last-child");
+        const newP = newTaskItem.querySelector('p.cross-through');
+        // updating checklist(div) functionality
+        const newDiv = newTaskItem.querySelector('div.check-list');
+        // updating close functionality
+        const newClose = document.querySelectorAll("img.closeTask");
+
+        newP.addEventListener("click", () => {
+            newP.classList.toggle("cross-through-active");
+            let checkbox = newP.previousElementSibling;
+            checkbox.classList.toggle("check-item-active");
+            // console.log(checkbox);
+        });
+
+        newDiv.addEventListener("click", () => {
+            newDiv.classList.toggle("check-item-active");
+            let lineThrough = newDiv.nextElementSibling;
+            lineThrough.classList.toggle('cross-through-active');
+        });
+
+        newClose.forEach(task => {
+            task.addEventListener('click', () => {
+                let removeParentElement = task.parentElement;
+                removeParentElement.remove();
+                decrementItems();
+                updateItemCount();
+            })
+        })
+    }
 
     // Checking/get the elements(p)
     crossThrough.forEach(p_tag => {
@@ -142,7 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
         task.addEventListener('click', () => {
             let removeParentElement = task.parentElement;
             removeParentElement.remove()
-            
+            decrementItems()
+            updateItemCount();
         })
     })
 
@@ -155,6 +177,28 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(trackAllList);
     console.log(trackActiveList);
     console.log(trackCompletedList);
+
+
+    // Tracking Items
+    function incrememtItem() {
+        itemNum++
+    }
+
+
+    function decrementItems() {
+        if (itemNum > 0) {
+            itemNum--
+        }
+    }
+    
+    // Initialize item count
+    updateItemCount();
+
+    // Update item count when the page loads
+    window.addEventListener("load", () => {
+        updateItemCount();
+    });
+
 })
 
 
