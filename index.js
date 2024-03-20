@@ -168,15 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
 
-    const trackAllList = document.querySelector(".track2");
-    const trackActiveList = document.querySelector(".track3");
-    const trackCompletedList = document.querySelector(".track4");
-    trackActiveList.addEventListener("click", () => {
-        console.log(crossThrough.includes('.cross-through-active'));
-    })
-    console.log(trackAllList);
-    console.log(trackActiveList);
-    console.log(trackCompletedList);
+
 
 
     // Tracking Items
@@ -201,6 +193,20 @@ document.addEventListener("DOMContentLoaded", () => {
         updateItemCount();
     });
     console.log(clearCompletedTasks);
+
+
+    const trackAllList = document.querySelector(".track2");
+    const trackActiveList = document.querySelector(".track3");
+    const trackCompletedList = document.querySelector(".track4");
+    trackActiveList.addEventListener("click", () => {
+        // console.log(crossThrough.includes('.cross-through-active'));
+    })
+    console.log(trackAllList);
+    console.log(trackActiveList);
+    console.log(trackCompletedList);
+
+
+    
     
     // Initialize item count
     updateItemCount();

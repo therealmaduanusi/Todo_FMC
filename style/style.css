@@ -81,7 +81,6 @@ button {
 .todo-body .todo-statement .wrapper-state {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
   -moz-column-gap: 7px;
        column-gap: 7px;
 }
