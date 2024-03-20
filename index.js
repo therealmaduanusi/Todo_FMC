@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeTasks = document.querySelectorAll(".closeTask");
     const checkList = document.querySelectorAll(".check-list");
     const crossThrough = document.querySelectorAll(".cross-through");
-
+    const clearCompletedTasks = document.querySelector(".track5");
 
     function updateItemCount() {
         const taskItems = document.querySelectorAll(".task-item");
@@ -190,6 +190,17 @@ document.addEventListener("DOMContentLoaded", () => {
             itemNum--
         }
     }
+
+    // Clear Completed Button functionality
+    clearCompletedTasks.addEventListener("click", () =>{
+        const completedItems = document.querySelectorAll(".cross-through-active");
+        completedItems.forEach(item => {
+            item.parentElement.remove();
+            decrementItems();
+        });
+        updateItemCount();
+    });
+    console.log(clearCompletedTasks);
     
     // Initialize item count
     updateItemCount();

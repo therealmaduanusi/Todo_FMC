@@ -67,12 +67,15 @@ button{
     display: flex;
     // column-gap: 1rem;
     padding: 30px;
-    color: $DarkGrayishBlue1;
     font-size: 0.8rem;
+    button{
+      text-decoration: none;
+      color: $DarkGrayishBlue1;
+    }
     .track1{
       flex-grow: 3;
     }
-    .track2{
+    .track2 button{
       color: $BrightBlue;
     }
     .wrapper-state{

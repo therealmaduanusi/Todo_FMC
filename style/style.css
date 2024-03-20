@@ -66,13 +66,16 @@ button {
 .todo-body .todo-statement {
   display: flex;
   padding: 30px;
-  color: hsl(236, 9%, 61%);
   font-size: 0.8rem;
+}
+.todo-body .todo-statement button {
+  text-decoration: none;
+  color: hsl(236, 9%, 61%);
 }
 .todo-body .todo-statement .track1 {
   flex-grow: 3;
 }
-.todo-body .todo-statement .track2 {
+.todo-body .todo-statement .track2 button {
   color: hsl(220, 98%, 61%);
 }
 .todo-body .todo-statement .wrapper-state {
