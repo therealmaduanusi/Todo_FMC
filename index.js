@@ -194,19 +194,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     console.log(clearCompletedTasks);
 
+    // ALL ACTIVE AND COPLETED
+    const taskList = document.getElementById("taskList");
+    const taskItems = document.querySelectorAll(".task-item");
+    const filterAllBtn = document.querySelector(".track2");
+    const filterActiveBtn = document.querySelector(".track3");
+    const filterCompletedBtn = document.querySelector(".track4");
 
-    const trackAllList = document.querySelector(".track2");
-    const trackActiveList = document.querySelector(".track3");
-    const trackCompletedList = document.querySelector(".track4");
-    trackActiveList.addEventListener("click", () => {
-        // console.log(crossThrough.includes('.cross-through-active'));
-    })
-    console.log(trackAllList);
-    console.log(trackActiveList);
-    console.log(trackCompletedList);
+    filterAllBtn.addEventListener("click", function () {
+        toggleFilter("all");
+    });
 
+    filterActiveBtn.addEventListener("click", function () {
+        toggleFilter("active");
+    });
 
+    filterCompletedBtn.addEventListener("click", function () {
+        toggleFilter("completed");
+    });
+
+    function toggleFilter(filterType) {
+        const tasks = document.querySelectorAll(".task-item");
+
+        switch (filterType) {
+            case "all":
+                console.log("all task");
+                break;
+            case "active":
+                console.log("active Task");
+                break;
+            case "completed":
+                console.log("completed Task");
+                break;
+            default:
+                break;
+        }
+    }
     
+
+
+
     
     // Initialize item count
     updateItemCount();

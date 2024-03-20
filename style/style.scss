@@ -105,6 +105,11 @@ button{
       border-bottom: 1px solid $DarkGrayishBlue2;
       display: flex;
       justify-content: space-between;
+
+      /* Style for hidden tasks */
+      .task-item.hidden {
+        display: none;
+      }
       .check-list{
         width: 20px;
         height: 20px;
