@@ -20,8 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Data input
     inputValue.addEventListener("keyup", (e) => {
+        e.preventDefault()
         // console.log(e.key);
         if (e.key === 'Enter') {
+            if (inputValue.value === '') {
+                alert("YO! you entered an empty todo List")
+            }
             const contentItem = document.getElementById("content");
             // console.log(contentItem);
             let createItem = document.createElement('div');
@@ -39,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             contentItem.appendChild(createItem)
             incrememtItem()
             updateItemListeners();
-            inputValue.value = '';
             updateItemCount();
             // console.log(itemNum);
             // updating cross-through(p) functionality
@@ -216,19 +219,32 @@ document.addEventListener("DOMContentLoaded", () => {
     function toggleFilter(filterType) {
         const tasks = document.querySelectorAll(".task-item");
 
-        switch (filterType) {
-            case "all":
-                console.log("all task");
-                break;
-            case "active":
-                console.log("active Task");
-                break;
-            case "completed":
-                console.log("completed Task");
-                break;
-            default:
-                break;
-        }
+        tasks.forEach(task => {
+            switch (filterType) {
+                case "all":
+                    task.style.display = "flex"; 
+                    console.log("all task");
+                    break;
+                case "active":
+                    if (!task.querySelector("p").classList.contains("cross-through-active")) {
+                        task.style.display = "flex"; // Show active tasks (tasks not completed)
+                    } else {
+                        task.style.display = "none"; // Hide completed tasks
+                    }
+                    console.log("active Task"); 
+                    break;
+                case "completed":
+                    if (task.querySelector("p").classList.contains("cross-through-active")) {
+                        task.style.display = "flex"; // Show completed tasks
+                    } else {
+                        task.style.display = "none"; // Hide active tasks
+                    }
+                    console.log("completed Task");
+                    break;
+                default:
+                    break;
+            }
+        })
     }
     
 
