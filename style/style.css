@@ -62,7 +62,6 @@ button {
   background-color: hsl(236, 33%, 100%);
   border-radius: 2px;
   box-shadow: 1px 1px 3px hsl(234, 11%, 52%);
-  /* Style for hidden tasks */
 }
 .todo-body .todo-statement {
   display: flex;
@@ -95,12 +94,6 @@ button {
 .todo-body .todo-statement .track4,
 .todo-body .todo-statement .track5 {
   cursor: pointer;
-}
-.todo-body .hidden {
-  display: none;
-}
-.todo-body .show {
-  display: block;
 }
 .todo-body #content .task-item {
   padding: 30px;
