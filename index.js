@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(clearCompletedTasks);
 
     // ALL ACTIVE AND COPLETED
-    const taskList = document.getElementById("taskList");
     const filterAllBtn = document.querySelector(".track2");
     const filterActiveBtn = document.querySelector(".track3");
     const filterCompletedBtn = document.querySelector(".track4");
