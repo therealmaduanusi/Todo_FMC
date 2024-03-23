@@ -104,6 +104,7 @@ button{
       border-bottom: 1px solid $DarkGrayishBlue2;
       display: flex;
       justify-content: space-between;
+      cursor: grab;
 
 
       .check-list{
@@ -137,7 +138,16 @@ button{
     }
   }
 }
+/* Style for the grabbed content */
+// .draggable {
+//   cursor: grab;
+// }
 
+/* Style for the grabbed content while being dragged */
+.dragging {
+  cursor: grabbing;
+  opacity: 0.5;
+}
 
 
 @media (max-width: 380px) {

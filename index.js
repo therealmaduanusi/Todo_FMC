@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // console.log(contentItem);
             let createItem = document.createElement('div');
             createItem.classList.add("task-item")
+            createItem.classList.add("draggable")
             createItem.innerHTML = `
                 <div class="check-list">
                 <!-- Added bg-img and bg-color -->
@@ -38,12 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 <!-- <div class="close"> -->
                 <img src="/images/icon-cross.svg" alt="close" id="closeimg" class="closeTask">
             `;
-            
+            // console.log(createItem);
 
             contentItem.appendChild(createItem)
-            incrememtItem()
             updateItemListeners();
             updateItemCount();
+
+
+           
+
+
+            // updateDrag();
             // console.log(itemNum);
             // updating cross-through(p) functionality
             inputValue.value = '';
@@ -77,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
             task.addEventListener('click', () => {
                 let removeParentElement = task.parentElement;
                 removeParentElement.remove();
-                decrementItems();
                 updateItemCount();
             })
         })
@@ -111,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let fname = "victor"
     console.log(fname.includes('or'));
     console.log(wrapperImg.style.backgroundImage.includes("/images/bg-desktop-light.jpg"));
-    console.log(wrapperImg);
+    // console.log(wrapperImg);
     if (window.innerWidth <= 380) {
         wrapperImg.style.backgroundImage = "url('/images/bg-mobile-light.jpg')";
     }
@@ -166,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
         task.addEventListener('click', () => {
             let removeParentElement = task.parentElement;
             removeParentElement.remove()
-            decrementItems()
             updateItemCount();
         })
     })
@@ -178,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function incrememtItem() {
         itemNum++
     }
+    incrememtItem()
 
 
     function decrementItems() {
@@ -185,21 +190,21 @@ document.addEventListener("DOMContentLoaded", () => {
             itemNum--
         }
     }
+    decrementItems();
+
 
     // Clear Completed Button functionality
     clearCompletedTasks.addEventListener("click", () =>{
         const completedItems = document.querySelectorAll(".cross-through-active");
         completedItems.forEach(item => {
             item.parentElement.remove();
-            decrementItems();
         });
         updateItemCount();
     });
-    console.log(clearCompletedTasks);
+    // console.log(clearCompletedTasks);
 
     // ALL ACTIVE AND COPLETED
     const taskList = document.getElementById("taskList");
-    const taskItems = document.querySelectorAll(".task-item");
     const filterAllBtn = document.querySelector(".track2");
     const filterActiveBtn = document.querySelector(".track3");
     const filterCompletedBtn = document.querySelector(".track4");
@@ -228,18 +233,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 case "active":
                     if (!task.querySelector("p").classList.contains("cross-through-active")) {
                         task.style.display = "flex"; // Show active tasks (tasks not completed)
+                        console.log("active Task");
                     } else {
                         task.style.display = "none"; // Hide completed tasks
                     }
-                    console.log("active Task"); 
+
                     break;
                 case "completed":
                     if (task.querySelector("p").classList.contains("cross-through-active")) {
                         task.style.display = "flex"; // Show completed tasks
+                        console.log("completed Task");
                     } else {
                         task.style.display = "none"; // Hide active tasks
                     }
-                    console.log("completed Task");
                     break;
                 default:
                     break;
@@ -247,6 +253,58 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     
+
+
+
+
+
+
+    function updateDrag() {
+        const taskItems = document.querySelectorAll(".task-item");
+        taskItems.forEach(task => {
+            task.addEventListener("dragstart", () => {
+                task.classList.add("dragging")
+                console.log("dragging start");
+            })
+    
+            task.addEventListener("dragend", () => {
+                task.classList.remove("dragging")
+                console.log("dragging ended");
+            })
+        })
+    }
+    updateDrag()
+    // Add dragover event listener to the container
+    const container = document.getElementById("content")
+    container.addEventListener("dragover", e => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(container, e.clientY);
+        const draggable = document.querySelector(".dragging");
+        if (afterElement == null) {
+            container.appendChild(draggable);
+        } else {
+            container.insertBefore(draggable, afterElement);
+        }
+    })
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll(".draggable:not(.dragging)")];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+
+
+    
+
+
 
 
 
