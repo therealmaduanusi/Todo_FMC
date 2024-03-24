@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let createItem = document.createElement('div');
             createItem.classList.add("task-item")
             createItem.classList.add("draggable")
+            createItem.setAttribute("draggable","true")
             createItem.innerHTML = `
                 <div class="check-list">
                 <!-- Added bg-img and bg-color -->
@@ -44,10 +45,27 @@ document.addEventListener("DOMContentLoaded", () => {
             contentItem.appendChild(createItem)
             updateItemListeners();
             updateItemCount();
-
-
-           
-
+            const taskItems = document.querySelectorAll(".task-item");
+            console.log(taskItems);
+            taskItems.forEach(task => {
+                console.log(task);
+                task.addEventListener("dragstart", () => {
+                    task.classList.add("dragging")
+                    console.log("dragging start");
+                })
+    
+                // task.addEventListener("touchstart", touchStart);
+                // task.addEventListener("touchmove", touchMove);
+                // task.addEventListener("touchend", touchEnd);
+        
+                task.addEventListener("dragend", () => {
+                    task.classList.remove("dragging")
+                    console.log("dragging ended");
+                })
+            })
+            // Add dragover call function
+            dragOverTask()
+            
 
             // updateDrag();
             // console.log(itemNum);
@@ -260,45 +278,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateDrag() {
         const taskItems = document.querySelectorAll(".task-item");
-        taskItems.forEach(task => {
-            task.addEventListener("dragstart", () => {
-                task.classList.add("dragging")
-                console.log("dragging start");
-            })
+        function eachTask() {
+            taskItems.forEach(task => {
+                task.addEventListener("dragstart", () => {
+                    task.classList.add("dragging")
+                    console.log("dragging start");
+                })
     
-            task.addEventListener("dragend", () => {
-                task.classList.remove("dragging")
-                console.log("dragging ended");
+                task.addEventListener("touchstart", (e) =>{
+                    console.log(e.touches[0]);
+                    task.classList.add("dragging");
+                    console.log("touch start");
+                });
+                task.addEventListener("touchmove", dragOverTask);
+                task.addEventListener("touchend", () => {
+                    task.classList.remove("dragging");
+                    console.log("dragging ended");
+                });
+        
+                task.addEventListener("dragend", () => {
+                    task.classList.remove("dragging")
+                    console.log("dragging ended");
+                })
             })
-        })
+        }
+        eachTask();
+        
     }
+
     updateDrag()
     // Add dragover event listener to the container
-    const container = document.getElementById("content")
-    container.addEventListener("dragover", e => {
-        e.preventDefault();
-        const afterElement = getDragAfterElement(container, e.clientY);
-        const draggable = document.querySelector(".dragging");
-        if (afterElement == null) {
-            container.appendChild(draggable);
-        } else {
-            container.insertBefore(draggable, afterElement);
-        }
-    })
-
-    function getDragAfterElement(container, y) {
-        const draggableElements = [...container.querySelectorAll(".draggable:not(.dragging)")];
-        return draggableElements.reduce((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offset = y - box.top - box.height / 2;
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child };
+    function dragOverTask() {
+        const container = document.getElementById("content")
+        container.addEventListener("dragover", e => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(container, e.clientY);
+            const draggable = document.querySelector(".dragging");
+            // container.appendChild(draggable)
+            if (afterElement == null) {
+                container.appendChild(draggable);
             } else {
-                return closest;
+                container.insertBefore(draggable, afterElement);
             }
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
+        })
+    
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll(".draggable:not(.dragging)")];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
     }
 
+    dragOverTask()
 
 
     
